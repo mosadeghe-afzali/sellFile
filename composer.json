@@ -1,0 +1,11 @@
+{
+    "name": "mosadeghe/sell-file",
+    "autoload": {
+        "psr-4": {
+            "Mosadeghe\\SellFile\\": "src/"
+        }
+    },
+    "require": {
+        "pecee/simple-router": "4.3.7.2"
+    }
+}
