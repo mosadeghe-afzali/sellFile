@@ -15,7 +15,6 @@ class UserController
         }
     }
 
-
     public function doDeactivation()
     {
         try {

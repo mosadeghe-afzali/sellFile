@@ -1,6 +1,6 @@
 <?php
-include_once 'helper/UserFileValidation.php';
 include_once 'model/FileUpload.php';
+include_once 'helper/UserFileValidation.php';
 include_once 'helper/validationException.php';
 include_once 'helper/GuestFileUploadValidation.php';
 
@@ -73,7 +73,6 @@ class FileUploadController
     public function showUploadedFileData()
     {
         try {
-
             $file = new FileUpload();
             $fileData = $file->getShowFileData($_GET['id']);
             include_once 'view/showUploadedFileData.php';

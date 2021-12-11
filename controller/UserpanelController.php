@@ -1,7 +1,6 @@
 <?php
 include_once 'model/FileUpload.php';
 
-
 class UserPanelController
 {
     public function UserPanel()
@@ -18,5 +17,4 @@ class UserPanelController
             echo 'sorry, something went wrong. please try again later';
         }
     }
-
 }

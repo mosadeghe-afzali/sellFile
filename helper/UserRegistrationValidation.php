@@ -3,24 +3,24 @@ include_once 'validationException.php';
 
 class UserRegistrationValidation
 {
-    public $firstName;
-    public $lastName;
     public $email;
+    public $submit;
     public $username;
     public $password;
-    public $confirmPassword;
-    public $submit;
+    public $lastName;
+    public $firstName;
     public $errorMessage;
+    public $confirmPassword;
 
     public function __construct($firstName, $lastName, $email, $username, $password, $confirmPassword, $submit)
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
         $this->email = $email;
+        $this->submit = $submit;
         $this->username = $username;
         $this->password = $password;
+        $this->lastName = $lastName;
+        $this->firstName = $firstName;
         $this->confirmPassword= $confirmPassword;
-        $this->submit = $submit;
     }
 
     public function checkIsSet()
@@ -79,6 +79,5 @@ class UserRegistrationValidation
         $this->checkConfirmPassword();
         $this->getErrors();
     }
-
 }
 

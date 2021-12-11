@@ -1,9 +1,9 @@
 <?php
-include_once 'vendor/autoload.php';
 
-include_once 'helper/UserRegistrationValidation.php';
 include_once 'model/UserRoles.php';
+include_once 'vendor/autoload.php';
 include_once 'helper/validationException.php';
+include_once 'helper/UserRegistrationValidation.php';
 
 class RegisterController
 {

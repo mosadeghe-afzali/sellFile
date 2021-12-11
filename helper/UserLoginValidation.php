@@ -5,15 +5,16 @@ require_once 'helper/validationException.php';
 
 class UserLoginValidation
 {
-    public string $errorMessage= "";
+    public $submit;
     public $username;
     public $password;
-    public $submit;
-    public function __construct($username , $password, $submit){
+    public string $errorMessage= "";
+
+    public function __construct($username , $password, $submit)
+    {
+        $this->submit= $submit;
         $this->username=$username;
         $this->password=$password;
-        $this->submit= $submit;
-
     }
 
     public function CheckIsSet()

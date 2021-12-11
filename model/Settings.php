@@ -16,7 +16,6 @@ class Settings
 
     public function deleteValidType($type)
     {
-
         $connection = DB::connect();
         $sql = "DELETE  FROM settings WHERE  type = '$type'";
         $connection->query($sql);
@@ -33,8 +32,8 @@ class Settings
                 $types[] = $row;
             }
         }
-        return $types;
 
+        return $types;
     }
 
     public function editValidSizeUpload($validSize)
@@ -52,8 +51,8 @@ class Settings
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
         }
-        return $row;
 
+        return $row;
     }
 }
 

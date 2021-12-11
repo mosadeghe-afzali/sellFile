@@ -9,7 +9,6 @@ class UserRoles{
         $statement = $connection->prepare("INSERT INTO user_role (user_id , role_id) VALUES (?, ?)");
         $statement->bind_param('ii' , $userId , $roleId);
 
-
         $user = new Users();
         $userId = $user->registration($data['firstName'], $data['lastName'], $data['email'],
             $data['username'], $data['password']);
@@ -18,6 +17,5 @@ class UserRoles{
         $roleId = $roles->setRoles();
 
         $statement->execute();
-
     }
 }

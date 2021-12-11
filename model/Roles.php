@@ -1,6 +1,5 @@
 <?php
 include_once 'DB/DB.php';
-;
 
 class Roles
 {
@@ -14,10 +13,8 @@ class Roles
         $statement->execute();
         $lastRoleId = $connection->insert_id;
         $connection->close();
+
         return $lastRoleId;
     }
 }
 
-//DELETE FROM my_table
-//WHERE timestamp < NOW() - INTERVAL 30 MINUTE
-//cronjob

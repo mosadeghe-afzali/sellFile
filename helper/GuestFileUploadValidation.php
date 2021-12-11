@@ -1,38 +1,42 @@
 <?php
-include_once 'validationException.php';
-include_once 'model/FileUpload.php';
+
 include_once 'model/Settings.php';
+include_once 'model/FileUpload.php';
+include_once 'validationException.php';
+
 class GuestFileUploadValidation
 {
-    public $fileName;
-    public $price;
     public $type;
-    public $description;
-    public $submit;
-    public $uploadDate;
     public $size;
+    public $price;
+    public $submit;
     public $errors = "";
+    public $fileName;
+    public $uploadDate;
+    public $description;
 
     public function __construct($fileName, $price, $type, $description, $submit)
     {
-        $this->fileName = $fileName;
-        $this->price = $price;
         $this->type = $type;
-        $this->description = $description;
+        $this->price = $price;
         $this->submit = $submit;
-
+        $this->fileName = $fileName;
+        $this->description = $description;
     }
 
     public function isSetData()
     {
-        if (!isset($this->submit) || !isset($this->fileName) || !isset($this->price) || !isset($this->type) || !isset($this->description)) {
+        if (!isset($this->submit) || !isset($this->fileName) || !isset($this->price) || !isset($this->type) ||
+            !isset($this->description))
+        {
             $this->errors .= 'لطفا ابتدا وارد سایت شوید' . "<br>";
         }
     }
 
     public function isEmpty()
     {
-        if (empty($this->fileName) || empty($this->price) || empty($this->type) || empty($this->description)) {
+        if (empty($this->fileName) || empty($this->price) || empty($this->type) || empty($this->description))
+        {
             $this->errors .= 'پر کردن همه فیلد ها الزامی است!' . '<br>';
         }
     }
@@ -43,7 +47,7 @@ class GuestFileUploadValidation
         $validSizeValue = $validSize['valid_size'];
 
         $file = new FileUpload();
-       $totalSize = $file->checkGuestValidFilesize( date('Y-m_d') , $_POST['ip']);
+        $totalSize = $file->checkGuestValidFilesize( date('Y-m_d') , $_POST['ip']);
 
        $this->size = ($_FILES['userFile']['size']);
 
@@ -69,29 +73,32 @@ class GuestFileUploadValidation
 
     public function checkFileFormat()
     {
-        if (!file_exists($_FILES['userFile']['tmp_name'])) {
+        if (!file_exists($_FILES['userFile']['tmp_name']))
+        {
             $this->errors .= "انتخاب فایل الزامی است." . "<br>";
         }
 
         $fileType = strtolower(pathinfo($_FILES["userFile"]["name"], PATHINFO_EXTENSION));
 
-
-        if ($fileType != $this->type) {
+        if ($fileType != $this->type)
+        {
             $this->errors .= 'نوع فایل وارد شده با نوع ذکر شده مطابقت ندارد. ' . "<br>";
         }
-        if ($_FILES['userFile']['name'] != $this->fileName) {
+        if ($_FILES['userFile']['name'] != $this->fileName)
+        {
             $this->errors .= 'نام فایل وارد شده با نام ذکر شده مطابقت ندارد. ' . "<br>";
         }
 
         $target_dir = 'uploads/';
         $target_file = $target_dir . $_FILES['userFile']['name'];
 
-        if (file_exists($target_file)) {
+        if (file_exists($target_file))
+        {
             $this->errors .= " این فایل قبلا آپلود شده است. " . "<br>";
         }
 
-
     }
+
     public function doFileUpload()
     {
         $target_dir = 'uploads/';
@@ -102,10 +109,10 @@ class GuestFileUploadValidation
         move_uploaded_file($_FILES['userFile']['tmp_name'], $target_file);
     }
 
-
     public function getErrors()
     {
-        if (!empty($this->errors)) {
+        if (!empty($this->errors))
+        {
             throw new ValidationException($this->errors, 400);
         }
     }
@@ -122,7 +129,5 @@ class GuestFileUploadValidation
         $this->checkFileFormat();
         $this->getErrors();
         $this->doFileUpload();
-
     }
-
 }

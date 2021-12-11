@@ -12,32 +12,35 @@ class UserFileValidation
 
     public function __construct($fileName, $price, $type, $description, $submit)
     {
-        $this->fileName = $fileName;
-        $this->price = $price;
         $this->type = $type;
-        $this->description = $description;
+        $this->price = $price;
         $this->submit = $submit;
+        $this->fileName = $fileName;
+        $this->description = $description;
 
     }
 
     public function isSetData()
     {
-        if (!isset($this->submit) || !isset($this->fileName) || !isset($this->price) || !isset($this->type) || !isset($this->description)) {
+        if (!isset($this->submit) || !isset($this->fileName) || !isset($this->price) || !isset($this->type) ||
+            !isset($this->description))
+        {
             $this->errors .= 'لطفا ابتدا وارد سایت شوید' . "<br>";
         }
     }
 
     public function isEmpty()
     {
-        if (empty($this->fileName) || empty($this->price) || empty($this->type) || empty($this->description)) {
+        if (empty($this->fileName) || empty($this->price) || empty($this->type) || empty($this->description))
+        {
             $this->errors .= 'پر کردن همه فیلد ها الزامی است!' . '<br>';
         }
     }
 
-
     public function checkFileFormat()
     {
-        if (!file_exists($_FILES['userFile']['tmp_name'])) {
+        if (!file_exists($_FILES['userFile']['tmp_name']))
+        {
             $this->errors .= "انتخاب فایل الزامی است." . "<br>";
         }
 
@@ -47,7 +50,8 @@ class UserFileValidation
             $this->errors .= 'نوع فایل وارد شده با نوع ذکر شده مطابقت ندارد. ' . "<br>";
         }
 
-        if ($_FILES['userFile']['name'] != $this->fileName) {
+        if ($_FILES['userFile']['name'] != $this->fileName)
+        {
             $this->errors .= 'نام فایل وارد شده با نام ذکر شده مطابقت ندارد. ' . "<br>";
         }
 
@@ -57,7 +61,6 @@ class UserFileValidation
         if (file_exists($target_file)) {
             $this->errors .= " این فایل قبلا آپلود شده است. " . "<br>";
         }
-
     }
 
     public function doFileUpload()
@@ -73,7 +76,8 @@ class UserFileValidation
 
     public function getErrors()
     {
-        if (!empty($this->errors)) {
+        if (!empty($this->errors))
+        {
             throw new ValidationException($this->errors, 400);
         }
     }
@@ -88,7 +92,5 @@ class UserFileValidation
         $this->checkFileFormat();
         $this->getErrors();
         $this->doFileUpload();
-
     }
-
 }

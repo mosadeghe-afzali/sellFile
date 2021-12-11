@@ -1,7 +1,8 @@
 <?php
+
+include_once 'model/user.php';
 include_once 'helper/validationException.php';
 include_once 'helper/UserLoginValidation.php';
-include_once 'model/user.php';
 
 class LoginController
 {
@@ -26,7 +27,6 @@ class LoginController
     {
         try {
             include_once 'view/login.php';
-
         } catch (Throwable $t) {
             echo 'sorry, something went wrong. please try again later';
         }

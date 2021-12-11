@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .main{
-            padding: 50px  50px;
+        .main {
+            padding: 50px 50px;
         }
 
     </style>
@@ -26,7 +26,7 @@
 <div class="main">
     <form action="/sellFile/UserController/editValidFilesizeUpload/" method="post">
         <label><b>حجم مجاز برای آپلود فایل توسط مهمان:</b></label>
-        <input type="number" name="validSize" >
+        <input type="number" name="validSize">
         <input type="submit" name="submit" value="تایید">
     </form>
 </div>
